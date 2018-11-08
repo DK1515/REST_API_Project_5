@@ -5,15 +5,23 @@ app = Flask(__name__)
 def index():
     return "Index!"
  
-@app.route("/hello")
+@app.route("/md5/<string:name>/")
 def hello():
     return "Hello World!"
  
-@app.route("/members")
+@app.route("/factorial/<int:param>/")
 def members():
     return "Members"
  
-@app.route("/members/<string:name>/")
+@app.route("/fibonacci/<int:param>/")
+def getMember(name):
+    return name
+
+@app.route("/is-prime/<int:param>/")
+def getMember(name):
+    return name
+
+@app.route("/slack-alert/<string:name>/")
 def getMember(name):
     return name
  
