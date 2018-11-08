@@ -6,23 +6,23 @@ def index():
     return "Index!"
  
 @app.route("/md5/<string:name>/")
-def hello():
-    return "Hello World!"
- 
-@app.route("/factorial/<int:param>/")
-def members():
-    return "Members"
- 
-@app.route("/fibonacci/<int:param>/")
-def getMember(name):
+def getMd5(name):
     return name
+ 
+@app.route("/factorial/<int:param_f>/")
+def getFact(param_f):
+    return  '%d' % param_f
+ 
+@app.route("/fibonacci/<int:param_fi>/")
+def getFib(param_fi):
+    return '%d' % param_fi
 
-@app.route("/is-prime/<int:param>/")
-def getMember(name):
-    return name
+@app.route("/is-prime/<int:param_is>/")
+def getPrime(param_is):
+    return '%d' % param_is
 
 @app.route("/slack-alert/<string:name>/")
-def getMember(name):
+def getSlack(name):
     return name
  
 if __name__ == "__main__":
