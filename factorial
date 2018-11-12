@@ -8,3 +8,16 @@ def factorial(n):
         return n * factorial(n-1)
 n=int(input("Input a number to compute the factiorial : "))
 print(factorial(n))
+
+
+goodinput = False
+while not goodinput:
+    try:
+        number = int(input('Enter a number: '))
+        if number > 0:
+            goodinput = True
+            print("that's a good number. Well done!")
+        else:
+            print("that's not a positive number. Try again: ")
+    except ValueError:
+        print("that's not an integer. Try again: ")
