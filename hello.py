@@ -15,11 +15,19 @@ def passwordCreate(name):
     return name
 
 
-@app.route("/factorial/<int:param_f>/")
-def getFact(param_f):
-    return '%d' % param_f
-
-
+@app.route("/factorial/<int:n>/")
+def factorial(n):
+	if isinstance(n, int):
+		if n > 0:
+			num = 1
+			while n >= 1:
+				num = num * n
+				n = n - 1
+			return json.dumps(num)
+		else:
+			return json.dumps('ERROR: That is not a number or the number is negative.')
+	else:
+		return json.dumps('ERROR: This is not a number.')
 @app.route("/fibonacci/<int:param_fi>/")
 def getFib(param_fi):
     i = 0
@@ -41,7 +49,7 @@ def getFib(param_fi):
 
 @app.route("/is-prime/<int:fact>/")
 def getPrime(fact):
-
+	return json.dumps(True)
 
 @app.route("/slack-alert/<string:name>/")
 def getSlack(name):
