@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, jsonify, request
+import hashlib
 app = Flask(__name__)
 import requests
 import json
@@ -8,8 +9,8 @@ def index():
     return "Index!"
  
 @app.route("/md5/<string:name>/")
-def getMd5(name):
-    return name
+def passwordCreate(name):
+	return name
  
 @app.route("/factorial/<int:param_f>/")
 def getFact(param_f):
@@ -17,7 +18,21 @@ def getFact(param_f):
  
 @app.route("/fibonacci/<int:param_fi>/")
 def getFib(param_fi):
-    return '%d' % param_fi
+	i = 0
+	j = 1
+	sequence = []
+	current_operation = 0
+	index = 0
+	while True:
+		sequence.append(i)
+		current_operation = i + j
+		i = j
+		j = current_operation
+		if i > param_fi:
+			return json.dumps(sequence)
+		else:
+			index += 1
+	return json.dumps(sequence)
 
 @app.route("/is-prime/<int:param_is>/")
 def getPrime(param_is):
