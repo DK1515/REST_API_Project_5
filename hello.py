@@ -1,6 +1,8 @@
 from flask import Flask
 app = Flask(__name__)
- 
+import requests
+import json
+
 @app.route("/")
 def index():
     return "Index!"
@@ -23,7 +25,14 @@ def getPrime(param_is):
 
 @app.route("/slack-alert/<string:name>/")
 def getSlack(name):
-    return name
+	web_hook_url = 'https://hooks.slack.com/services/T6T9UEWL8/BE0QVGH32/			NtjpfyyPyBgS9RwYxG4BKxEg'
+
+	slack_msg = {'text':name}
+	if requests.post(web_hook_url,data=json.dumps(slack_msg)):
+           print(name)
+	   return json.dumps(True)
+	else:
+	   return json.dumps(False)
  
 if __name__ == "__main__":
     app.run()
