@@ -17,7 +17,7 @@ We used Github!
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](REST_API_Project_4/LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/DK1515/REST_API_Project_4/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 
