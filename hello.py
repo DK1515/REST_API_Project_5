@@ -17,17 +17,19 @@ def passwordCreate(name):
 
 @app.route("/factorial/<int:n>/")
 def factorial(n):
-	if isinstance(n, int):
-		if n > 0:
-			num = 1
-			while n >= 1:
-				num = num * n
-				n = n - 1
-			return json.dumps(num)
-		else:
-			return json.dumps('ERROR: That is not a number or the number is negative.')
-	else:
-		return json.dumps('ERROR: This is not a number.')
+    if isinstance(n, int):
+        if n > 0:
+            num = 1
+            while n >= 1:
+                num = num * n
+                n = n - 1
+            return json.dumps(num)
+        else:
+            return json.dumps('ERROR: That is not a number or the number is negative.')
+    else:
+        return json.dumps('ERROR: This is not a number.')
+
+
 @app.route("/fibonacci/<int:param_fi>/")
 def getFib(param_fi):
     i = 0
@@ -49,7 +51,15 @@ def getFib(param_fi):
 
 @app.route("/is-prime/<int:fact>/")
 def getPrime(fact):
-	return json.dumps(True)
+	for n in range(2, fact - 1):  # checking if fact is composite
+	    if (fact % n) == 0:
+	        return json.dumps('Composite')
+	if(fact == 0 or fact == 1):  # checking if 1 is prime and not sure of the status for 0
+		 return json.dumps('Prime')
+	else:  # every number that is not 1 and not composite is prime
+	    return json.dumps('Prime')
+
+
 
 @app.route("/slack-alert/<string:name>/")
 def getSlack(name):
