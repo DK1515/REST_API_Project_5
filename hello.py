@@ -12,7 +12,9 @@ def hello_world():
 
 @app.route('/md5/<strung>')
 def md5conv(strung):
-     return json.dumps(hashlib.md5(strung).hexdigest())
+	input=strung
+	final=('input:', strung, 'output:', hashlib.md5(strung).hexdigest())
+	return json.dumps(final)
 
 @app.route("/factorial/<int:n>/")
 def factorial(n):
