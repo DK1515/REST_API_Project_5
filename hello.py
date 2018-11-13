@@ -10,10 +10,9 @@ def index():
     return "Index!"
 
 
-@app.route("/md5/<string:name>/")
-def passwordCreate(name):
-    return name
-
+@app.route('/md5/<strung>')
+def md5conv(strung):
+     return hashlib.md5(strung).hexdigest()
 
 @app.route("/factorial/<int:n>/")
 def factorial(n):
