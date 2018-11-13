@@ -5,9 +5,9 @@ import requests
 import json
 
 
-@app.route("/")
-def index():
-    return "Index!"
+@app.route('/')
+def hello_world():
+    return 'Hello, World!'
 
 
 @app.route('/md5/<strung>')
