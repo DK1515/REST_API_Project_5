@@ -3,7 +3,7 @@ import hashlib
 app = Flask(__name__)
 import requests
 import json
-
+from redis import Redis #for reddis stuff
 
 @app.route('/')
 def hello_world():
@@ -81,6 +81,20 @@ def getSlack(name):
     else:
         return jsonify(input, False)
     
+@app.route("/kv-record/<string:record>") 
+def getRecord(record):
+    keys = count.keys()
+    redis_host = "localhost"
+    redis_port = 5000
+    redis_password = ""
+    input = inside
+    #if it doesnt work
+        #return redis.call(the word error , unable to find key pair)
+    if redis.call("get",KEYS[1]) == ARGV[1]
+    then
+        return redis.call(KEYS, input)
+    else
+        return return redis.call(ARGV, output)
 
     
 
