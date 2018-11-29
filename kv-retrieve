@@ -1,5 +1,20 @@
-#still messing around with stuff
-#making this so i dont lose it
+from flask import Flask, jsonify, request
+import hashlib
+app = Flask(__name__) 
+import requests 
+import json 
+from redis import Redis #for reddis stuff 
+
+
+ 
+ @app.route('/') 
+ 
+@@ -80,6 +81,24 @@ def getSlack(name):
+return jsonify(input, True) 
+ else: 
+return jsonify(input, False) 
+
+@app.route("/kv-retrieve/<string:retrieve>") 
 
 func GetValue(key string) []string {
     var value []string
