@@ -97,6 +97,31 @@ def getRecord(record):
         return return redis.call(ARGV, output)
 
     
+@app.route("/kv-retrieve/<string:retrieve>") 
+
+func GetValue(key string) []string {
+    var value []string
+    var err error
+    value, err = redis.Strings(conn.Do("GET", key))
+
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println(value)
+    return value
+}
+
+func RetrieveValue() {
+    keyType, _ := conn.Do("TYPE", recentItemKey)
+    fmt.Println("Type", keyType)
+
+    var results []string
+    results = GetValue(recentItemKey)
+
+    for _, val := range results {
+        fmt.Println(val)
+    }
+}
 
 
 
