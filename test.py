@@ -30,17 +30,25 @@ tests = {
     '/is-prime/37':                 (200, True),
     '/slack-alert/test':            (200, True),
     '/slack-alert/'+HTTP_ENCODE:    (200, True),
-	'/kv-record/testval':			(200, True),   #records testval like normal
-	'/kv-record/testval':			(404, False),  #can't record becuase value exists already
-	'/kv-retrieve/testval':			(200, True),   #retrieves testval like normal
-	'/kv-retrieve/badval':			(404, False),  #can't retrieve badval, doesnt exist
+	'/kv-record/name key=test value= val':			(200, True),   #records test like normal
+	'/kv-record/name key=test value=newval':			(200, True),  #updates test value
+	'/kv-record/name key=bad value=val':			(404, False),  #can't update, key not made
+	'/kv-retrieve/test':			(200, True),   #retrieves testval like normal
+	'/kv-retrieve/bad':			(404, False),  #can't retrieve badval, doesnt exist
 }
 
 FAILED = 0
 PASSED = 0
 for uri, test_result in tests.items():
     print " * ", uri, "... ",
-    resp = requests.get('http://localhost:5000'+uri)
+	if(uri=='/kv-record/name key=test value= val')
+		resp= requests.get('http POST localhost:5000'+uri)
+		else if(uri=='/kv-record/name key=bad value=val')
+				resp = requests.get('http PUT localhost:5000'+uri)
+			else if (uri == '/kv-record/name key=bad value=val')
+					resp = requests.get('http PUT localhost:5000'+uri)
+						else
+							resp = requests.get('http://localhost:5000'+uri)
     if resp.status_code == test_result[0]:
         try:
             # Try and extract the JSON from the HTTP results
