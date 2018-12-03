@@ -1,9 +1,11 @@
 from flask import Flask, jsonify, request
 import hashlib
-app = Flask(__name__)
 import requests
 import json
 from redis import Redis #for reddis stuff
+
+
+app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
@@ -81,49 +83,57 @@ def getSlack(name):
     else:
         return jsonify(input, False)
     
-@app.route("/kv-record/<string:record>") 
-def getRecord(record):
-    keys = count.keys()
-    redis_host = "localhost"
-    redis_port = 5000
-    redis_password = ""
-    input = inside
-    #if it doesnt work
-        #return redis.call(the word error , unable to find key pair)
-    if redis.call("get",KEYS[1]) == ARGV[1]
-    then
-        return redis.call(KEYS, input)
-    else
-        return return redis.call(ARGV, output)
+@app.route("/kv-retrieve/<string:key>")
+def redis_get(key): 
+    #  only has to use Redis
+    r = Redis(host="myredis")
+    keyss = r.get(key)
+    return keyss
 
+@app.route("/kv-record/<string:k>", methods=['POST'])
+def redis_set(k):
+    r = Redis(host="myredis")
     
-@app.route("/kv-retrieve/<string:retrieve>") 
+    # check and see if the key already exists
+    if r.get(k):
+        return "Key already exists!"
+    else:
+        # write to redis
+        
+        # first, grab the new value from the JSON payload
+        user_value = request.get_json().get('value')
+        
+        # call the redis set() function
+        result = r.set(k, user_value)
+        
+        # return to user
+        if result == True:
+            return "Success"
+        else:
+            return "Something went wrong"
 
-func GetValue(key string) []string {
-    var value []string
-    var err error
-    value, err = redis.Strings(conn.Do("GET", key))
-
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Println(value)
-    return value
-}
-
-func RetrieveValue() {
-    keyType, _ := conn.Do("TYPE", recentItemKey)
-    fmt.Println("Type", keyType)
-
-    var results []string
-    results = GetValue(recentItemKey)
-
-    for _, val := range results {
-        fmt.Println(val)
-    }
-}
-
+@app.route("/kv-record/<string:k>", methods=['PUT'])
+def redis_update(k):
+    r = Redis(host="myredis")
+    
+    # check and see if the key already exists
+    if not r.get(k):
+        return "Can't update if its doesnt exist!"
+    else:
+          # write to redis
+        
+        # first, grab the new value from the JSON payload
+        user_value = request.get_json().get('value')
+        
+        # call the redis set() function
+        result = r.set(k, user_value)
+        
+        # return to user
+        if result == True:
+            return "Success"
+        else:
+            return "Something went wrong"
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, host='0.0.0.0')
