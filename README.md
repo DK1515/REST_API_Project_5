@@ -9,6 +9,7 @@ A Docker Container!
 mkdir(whatever name you want)<br/>
 git clone (url)<br/>
 cd REST_API_Project_5<br/>
+sudo pip install redis<br/>
 python hello.py<br/>
 
 ## Built With
