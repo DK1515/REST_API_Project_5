@@ -6,9 +6,9 @@ REST API/Python Class Project
 A Docker Container!
 
 ## Instructions
-git clone (url)
-cd REST_API_Project_5
-python hello.py
+git clone (url)<br/>
+cd REST_API_Project_5<br/>
+python hello.py<br/>
 
 ## Built With
 
