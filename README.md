@@ -6,6 +6,7 @@ REST API/Python Class Project
 A Docker Container!
 
 ## Instructions
+mkdir(whatever name you want)
 git clone (url)<br/>
 cd REST_API_Project_5<br/>
 python hello.py<br/>
