@@ -42,11 +42,11 @@ PASSED = 0
 for uri, test_result in tests.items():
     print " * ", uri, "... ",
 	if(uri=='/kv-record/test key=test value= val')
-		resp= requests.get('http POST localhost:5000'+uri)
+		resp= requests.post('http://localhost:5000/kv-record/post', data={'test':'val'})
 		else if(uri=='/kv-record/test key=test value=newval')
-				resp = requests.get('http PUT localhost:5000'+uri)
+				resp = requests.put('http://localhost:5000/kv-record/put', data={'test':'newval'})
 			else if (uri == '/kv-record/bad key=bad value=val')
-					resp = requests.get('http PUT localhost:5000'+uri)
+					resp = requests.put('http://localhost:5000/kv-record/put', data = {'bad':'val'})
 						else
 							resp = requests.get('http://localhost:5000'+uri)
     if resp.status_code == test_result[0]:
