@@ -30,9 +30,9 @@ tests = {
     '/is-prime/37':                 (200, True),
     '/slack-alert/test':            (200, True),
     '/slack-alert/'+HTTP_ENCODE:    (200, True),
-	'/kv-record/name key=test value= val':			(200, True),   #records test like normal
-	'/kv-record/name key=test value=newval':			(200, True),  #updates test value
-	'/kv-record/name key=bad value=val':			(404, False),  #can't update, key not made
+	'/kv-record/test key=test value= val':			(200, True),   #records test like normal
+	'/kv-record/test key=test value=newval':			(200, True),  #updates test value
+	'/kv-record/bad key=bad value=val':			(404, False),  #can't update, key not made
 	'/kv-retrieve/test':			(200, True),   #retrieves testval like normal
 	'/kv-retrieve/bad':			(404, False),  #can't retrieve badval, doesnt exist
 }
