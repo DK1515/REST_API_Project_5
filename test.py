@@ -41,11 +41,11 @@ FAILED = 0
 PASSED = 0
 for uri, test_result in tests.items():
     print " * ", uri, "... ",
-	if(uri=='/kv-record/name key=test value= val')
+	if(uri=='/kv-record/test key=test value= val')
 		resp= requests.get('http POST localhost:5000'+uri)
-		else if(uri=='/kv-record/name key=test value=newval')
+		else if(uri=='/kv-record/test key=test value=newval')
 				resp = requests.get('http PUT localhost:5000'+uri)
-			else if (uri == '/kv-record/name key=bad value=val')
+			else if (uri == '/kv-record/bad key=bad value=val')
 					resp = requests.get('http PUT localhost:5000'+uri)
 						else
 							resp = requests.get('http://localhost:5000'+uri)
