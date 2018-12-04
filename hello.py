@@ -89,14 +89,17 @@ def redis_get(key):
     r = Redis(host="myredis")
     keyss = r.get(key)
     return keyss
+    #return jsonify(input, True) <-- if the retreival is sucess ouput true
 
-@app.route("/kv-record/<string:k>", methods=['POST'])
+
+@app.route("/kv-record/<string:k>", methods=['POST']) #making new key/value
 def redis_set(k):
     r = Redis(host="myredis")
     
     # check and see if the key already exists
     if r.get(k):
         return "Key already exists!"
+        #return jsonify('ERROR: Key already exits!')
     else:
         # write to redis
         
@@ -106,33 +109,40 @@ def redis_set(k):
         # call the redis set() function
         result = r.set(k, user_value)
         
-        # return to user
+        # return to user new key and val made
         if result == True:
             return "Success"
+            #return k <--shows new key
+            #return val <--shows new val
+            
         else:
             return "Something went wrong"
+            #return jsonify('ERROR: Something went wrong')
 
-@app.route("/kv-record/<string:k>", methods=['PUT'])
+@app.route("/kv-record/<string:k>", methods=['PUT']) #to update k and val
 def redis_update(k):
     r = Redis(host="myredis")
     
     # check and see if the key already exists
     if not r.get(k):
         return "Can't update if its doesnt exist!"
+        #return jsonify(input, False)
     else:
-          # write to redis
+        # write to redis
         
         # first, grab the new value from the JSON payload
-        user_value = request.get_json().get('value')
+        user_value = request.get_json().get('value') #<--getting updated value from JSON annd putting it in uservalue
         
         # call the redis set() function
-        result = r.set(k, user_value)
+        result = r.set(k, user_value) #<-- setting new updated value to result
         
         # return to user
         if result == True:
             return "Success"
+            #return jsonify(input, True)<--value for key is updated
         else:
             return "Something went wrong"
+            #return jsonify(input, False) <--not able to update key
 
 
 if __name__ == "__main__":
